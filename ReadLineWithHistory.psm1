@@ -82,12 +82,15 @@ class ReadLineWithHistory {
   [History]$History = [History]::new();
   ReadLineWithHistory() {}
 
-  [String] ReadLine($Prompt) {
-
+  [String] ReadLine([String]$Prompt) {
     If ($Prompt) {
       [Console]::Write($Prompt)
     }
-    
+
+    return $this.ReadLine();
+  }
+
+  [String] ReadLine() {
     $CurrentInput = "";
     $this.History.SyncNextInput("");
     $CursorStart = Get-Cursor;
